@@ -1,5 +1,15 @@
 Revision history for Hg-Lib
 
+0.01_01 Sat Feb  9 21:09:41 EST 2013
+
+[BUILD FIXES]
+
+* record missing test dependency on Probe::Perl
+
+* make work on 5.10.1
+
+* attempt to get Windows to work
+
 0.01 Mon Feb  4 22:47:24 EST 2013
 
 * initial release

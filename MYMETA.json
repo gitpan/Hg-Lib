@@ -22,8 +22,11 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "CPAN::Meta" : "0",
-            "ExtUtils::MakeMaker" : "6.59"
+            "ExtUtils::MakeMaker" : "6.59",
+            "Moo::Role" : "0",
+            "Probe::Perl" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0"
          }
       },
       "configure" : {
@@ -36,6 +39,8 @@
          "requires" : {
             "Moo" : "0",
             "MooX::Attributes::Shadow" : "0",
+            "MooX::Types::MooseLike" : "0",
+            "Try::Tiny" : "0",
             "perl" : "5.010001"
          }
       },

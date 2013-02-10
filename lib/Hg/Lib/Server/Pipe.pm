@@ -1,16 +1,30 @@
 package Hg::Lib::Server::Pipe;
 
+use strict;
+use warnings;
+
 use Symbol 'gensym';
 #use IPC::Open3 qw[ open3 ];
 use IPC::Open2 qw[ open2 ];
 
 use Carp;
 
-use POSIX qw[ :sys_wait_h ];
+use POSIX qw[ WNOHANG WEXITSTATUS WIFEXITED WTERMSIG WIFSIGNALED ];
 use Try::Tiny;
+
+# 5.10.1 requires usage to gain access to methods
+use IO::Handle;
 
 use Moo;
 use MooX::Types::MooseLike::Base qw[ :all ];
+
+# attempt to make things work on Windows, which doesn't define
+# WUNTRACED
+BEGIN {
+    my $have_WUNTRACED = eval { POSIX::WUNTRACED() | 1 ;};
+
+    *WUNTRACED = $have_WUNTRACED ? \&POSIX::WUNTRACED : sub () { 0 };
+}
 
 sub forceArray {
     sub { 'ARRAY' eq ref $_[0] ? $_[0] : [ $_[0] ] }

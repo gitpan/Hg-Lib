@@ -3,9 +3,10 @@ abstract: "interface to mercurial's command server"
 author:
   - 'Diab Jerius <djerius@cpan.org>'
 build_requires:
-  CPAN::Meta: 0
   ExtUtils::MakeMaker: 6.59
   Moo::Role: 0
+  Probe::Perl: 0
+  Test::Exception: 0
   Test::More: 0
 configure_requires:
   CPAN::Meta: 0
@@ -24,6 +25,8 @@ no_index:
 requires:
   Moo: 0
   MooX::Attributes::Shadow: 0
+  MooX::Types::MooseLike: 0
+  Try::Tiny: 0
   perl: 5.010001
 resources:
   license: http://dev.perl.org/licenses/

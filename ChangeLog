@@ -1,4 +1,48 @@
-2013-02-04 22:37 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (f8ee891a0c6a [tip])
+2013-02-09 22:53 -0500  djerius  <djerius@cfa.harvard.edu>  (a86beb293bf1 [tip])
+
+	* lib/Hg/Lib/Server/Pipe.pm:
+	try to fix hang on windows
+
+2013-02-09 21:38 -0500  djerius  <djerius@cfa.harvard.edu>  (abaaa933d7b1)
+
+	* MANIFEST.SKIP:
+	ignore emacs temp files
+
+2013-02-09 21:34 -0500  djerius  <djerius@cfa.harvard.edu>  (87eedd515db6)
+
+	* Makefile.PL:
+	record missing module dependencies
+
+2013-02-09 21:09 -0500  djerius  <djerius@cfa.harvard.edu>  (42fcda3811eb)
+
+	* lib/Hg/Lib/Server/Pipe.pm:
+	make work on 5.10.1
+
+2013-02-09 17:22 -0500  djerius  <djerius@cfa.harvard.edu>  (684decfd9fde)
+
+	* Makefile.PL:
+	retreat from cpanfile; add missing Probe::Perl dependency
+
+2013-02-04 23:15 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (d6871e7667f1)
+
+	* .hgtags: new file.
+	* .hgtags:
+	Added tag 0.01 for changeset da85f567421b
+
+2013-02-04 23:11 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (da85f567421b [0.01])
+
+	* Makefile.PL, lib/Hg/Lib.pm:
+	more dist tweaks
+
+2013-02-04 22:56 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (7c977ae38554)
+
+	* MANIFEST.SKIP: new file.
+	* dist.ini: deleted file.
+	* Changes, MANIFEST.SKIP, Makefile.PL, dist.ini, lib/Hg/Lib.pm,
+	lib/Hg/Lib/Server.pm:
+	minor fixes for initial distribution
+
+2013-02-04 22:37 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (f8ee891a0c6a)
 
 	* cpanfile: new file.
 	* Makefile.PL, cpanfile:
