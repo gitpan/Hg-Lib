@@ -12,7 +12,7 @@ use Hg::Lib::Server;
 
 sub new { Hg::Lib::Server->new( hg => fake_hg, @_ ) }
 
-lives_ok { new( args => [ qw( hello ) ] ) } 'hello, no args';
+lives_ok { new( args => [ qw( basic ) ] ) } 'hello, no args';
 
 throws_ok { new( args => [ qw( bad_hello_chan ) ] ) }
 	  	 qr/incomplete hello message/, 'bad hello channel';

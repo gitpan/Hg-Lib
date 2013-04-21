@@ -4,8 +4,7 @@ use IO::Handle;
 use Getopt::Long;
 
 use lib 't';
-
-use BadServer;
+use lib 't/lib';
 
 my %opt = ( exitval => 0 );
 
@@ -35,29 +34,34 @@ sub eof { exit 0 }
 
 sub bad_hello_chan {
 
+    require BadServer;
     BadServer::Hello::Chan->new->serve;
 
 }
 
 sub bad_hello_len {
 
+    require BadServer;
     BadServer::Hello::Len->new->serve;
 
 }
 
 sub bad_hello_no_capabilities {
 
+    require BadServer;
     BadServer::NoCapabilities->new->serve;
 }
 
 sub bad_hello_no_runcommand {
 
+    require BadServer;
     BadServer::NoRunCommand->new->serve;
 
 }
 
 sub bad_hello_no_encoding {
 
+    require BadServer;
     BadServer::NoEncoding->new->serve;
 
 }
@@ -71,13 +75,20 @@ sub wait {
     <STDIN>;
 }
 
-sub default { }
+sub basic {
 
-sub hello {
-
-    Server->new->serve;
+    require Server::Basic;
+    Server::Basic->new->serve;
 
 }
+
+sub full {
+
+    require Server::Full;
+    Server::Full->new->serve;
+
+}
+
 
 $_->() foreach @ARGV;
 

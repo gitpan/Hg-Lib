@@ -1,10 +1,10 @@
 {
    "abstract" : "interface to mercurial's command server",
    "author" : [
-      "Diab Jerius <djerius@cpan.org>"
+      "Diab Jerius E<lt>djerius@cpan.orgE<gt>"
    ],
-   "dynamic_config" : "0",
-   "generated_by" : "Module::Install version 1.06, CPAN::Meta::Converter version 2.120921",
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4004, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "perl_5"
    ],
@@ -13,39 +13,39 @@
       "version" : "2"
    },
    "name" : "Hg-Lib",
-   "no_index" : {
-      "directory" : [
-         "inc",
-         "t"
-      ]
-   },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "6.59"
-         }
-      },
       "configure" : {
          "requires" : {
-            "CPAN::Meta" : "0",
-            "ExtUtils::MakeMaker" : "6.59"
+            "Module::Build" : "0.40"
          }
       },
       "runtime" : {
          "requires" : {
-            "Moo" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open2" : "0",
+            "Moo" : "1.001000",
             "MooX::Attributes::Shadow" : "0",
-            "perl" : "v5.10.1"
-         }
-      },
-      "test" : {
-         "requires" : {
-            "Moo::Role" : "0",
-            "Test::More" : "0"
+            "MooX::Types::MooseLike" : "0",
+            "POSIX" : "0",
+            "Params::Validate" : "0",
+            "Scalar::Util" : "0",
+            "Try::Tiny" : "0"
          }
       }
    },
-   "release_status" : "stable",
+   "provides" : {
+      "Hg::Lib" : {
+         "file" : "lib/Hg/Lib.pm",
+         "version" : "0.01_02"
+      },
+      "Hg::Lib::Server" : {
+         "file" : "lib/Hg/Lib/Server.pm"
+      },
+      "Hg::Lib::Server::Pipe" : {
+         "file" : "lib/Hg/Lib/Server/Pipe.pm"
+      }
+   },
+   "release_status" : "testing",
    "resources" : {
       "license" : [
          "http://dev.perl.org/licenses/"
@@ -54,5 +54,15 @@
          "url" : "https://bitbucket.org/djerius/hg-lib"
       }
    },
-   "version" : "0.01"
+   "version" : "0.01_02",
+   "x_test_requires" : {
+      "Getopt::Long" : "0",
+      "IO::Handle" : "0",
+      "IO::Pipe" : "0",
+      "Moo::Role" : "0",
+      "Probe::Perl" : "0",
+      "Sub::Quote" : "0",
+      "Test::Exception" : "0",
+      "Test::More" : "0"
+   }
 }

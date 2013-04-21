@@ -4,7 +4,7 @@ package Hg::Lib;
 
 use 5.10.1;
 
-our $VERSION = '0.01_01';
+our $VERSION = '0.01_02';
 
 1;
 

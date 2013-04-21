@@ -21,15 +21,12 @@ use MooX::Types::MooseLike::Base qw[ :all ];
 # attempt to make things work on Windows, which doesn't define
 # WUNTRACED
 BEGIN {
-    my $have_WUNTRACED = eval { POSIX::WUNTRACED() | 1 ;};
+    my $have_WUNTRACED = eval { POSIX::WUNTRACED() | 1; };
 
     *WUNTRACED = $have_WUNTRACED ? \&POSIX::WUNTRACED : sub () { 0 };
 }
 
-sub forceArray {
-    sub { 'ARRAY' eq ref $_[0] ? $_[0] : [ $_[0] ] }
-}
-
+use constant forceArray => sub { 'ARRAY' eq ref $_[0] ? $_[0] : [ $_[0] ] };
 
 with 'MooX::Attributes::Shadow::Role';
 
@@ -41,27 +38,32 @@ has _pid => (
     clearer   => 1,
     init_arg  => undef
 );
-has _write => ( is => 'rwp', init_arg => undef );
-has _read  => ( is => 'rwp', init_arg => undef );
-has _error => ( is => 'rwp', init_arg => undef );
-has cmd    => ( is => 'rwp' );
+has _write => (
+    is       => 'rwp',
+    init_arg => undef
+);
+has _read => (
+    is       => 'rwp',
+    init_arg => undef
+);
+has _error => (
+    is       => 'rwp',
+    init_arg => undef
+);
 
 # path to hg executable
 has hg => (
     is      => 'ro',
-    default => sub { 'hg' },
+    default => 'hg',
     coerce  => forceArray,
-    isa     => sub {
-        is_Str( $_ )
-          or die( "'hg' attribute must be string\n" )
-          foreach @{ shift() };
-    },
+    isa     => ArrayRef[Str],
 );
 
 # arguments to hg
 has args => (
     is      => 'ro',
     coerce  => forceArray,
+    isa     => ArrayRef[Str],
     default => sub { [] },
 );
 
@@ -73,6 +75,7 @@ has path => (
 has configs => (
     is      => 'ro',
     coerce  => forceArray,
+    isa     => ArrayRef[Str],
     default => sub { [] },
 );
 
@@ -123,10 +126,10 @@ sub open {
         $pid = open2( $read, $write, @{ $self->cmd } );
         #        $pid = open3( $write, $read, $error, @{ $self->cmd } );
 
-	# there's probably not enough time elapsed between starting
-	# the child process and checking for its existence, but this
-	# doesn't cost much
-	_check_on_child( $pid, status => 'alive' );
+        # there's probably not enough time elapsed between starting
+        # the child process and checking for its existence, but this
+        # doesn't cost much
+        _check_on_child( $pid, status => 'alive' );
 
     }
     catch {
@@ -177,8 +180,11 @@ sub get_chunk {
 
     if ( $ch =~ /IL/ ) {
 
-        return $ch, $len;
+        croak(
+            "get_chunk called incorrectly called in scalar context for channel $ch\n"
+        ) unless wantarray();
 
+        return $ch, $len;
     }
 
     else {
@@ -193,6 +199,22 @@ sub get_chunk {
 
 }
 
+# call as $pipe->write( $buf, [ $len ] )
+sub write {
+
+    my $self = shift;
+    my $len = @_ > 1 ? $_[1] : length( $_[0] );
+    $self->_write->syswrite( $_[0], $len ) == $len
+      or croak( "error writing $len bytes to server\n" );
+}
+
+sub writeblock {
+
+    my $self = shift;
+
+    $self->write( pack( "N/a*", $_[0] ) );
+}
+
 sub close {
 
     my $self = shift;
@@ -203,7 +225,11 @@ sub close {
 
         $self->_write->close;
 
-	_check_on_child( $self->_pid, status => 'exit', wait => 1 );
+        _check_on_child(
+            $self->_pid,
+            status => 'exit',
+            wait   => 1
+        );
 
         $self->_clear_pid;
     }
@@ -224,34 +250,32 @@ sub _check_on_child {
     # anything else is not ok.
     if ( $pid == $status ) {
 
-        die( "unexpected exit of child with status ",
-            WEXITSTATUS( $? ), "\n" )
+        die( "unexpected exit of child with status ", WEXITSTATUS( $? ), "\n" )
           if WIFEXITED( $? ) && WEXITSTATUS( $? ) != 0;
 
-        die( "unexpected exit of child with signal ",
-            WTERMSIG( $? ), "\n" )
+        die( "unexpected exit of child with signal ", WTERMSIG( $? ), "\n" )
           if WIFSIGNALED( $? );
 
     }
 
     if ( $opt{status} eq 'alive' ) {
 
-	die( "unexpected exit of child\n" )
-	    if $pid == $status || -1 == $status;
+        die( "unexpected exit of child\n" )
+          if $pid == $status || -1 == $status;
 
     }
 
     elsif ( $opt{status} eq 'exit' ) {
 
-	# is the child still alive
-	die( "child still alive\n" )
-	     unless $pid == $status  || -1 == $status;
+        # is the child still alive
+        die( "child still alive\n" )
+          unless $pid == $status || -1 == $status;
 
     }
 
     else {
 
-	die( "internal error: unknown child status requested\n" );
+        die( "internal error: unknown child status requested\n" );
 
     }
 

@@ -1,4 +1,141 @@
-2013-02-09 22:53 -0500  djerius  <djerius@cfa.harvard.edu>  (a86beb293bf1 [tip])
+2013-04-20 22:47 -0400  Diab Jerius  <djerius@cpan.org>  (bd93019e9860 [tip])
+
+	* lib/Hg/Lib/Server.pm, lib/Hg/Lib/Server/Pipe.pm:
+	perltidy
+
+2013-04-20 22:37 -0400  Diab Jerius  <djerius@cpan.org>  (9903cc9dd5f0)
+
+	* t/Server/encoding.t: new file.
+	* t/Server/encoding.t:
+	add simple getencoding test
+
+2013-04-20 22:27 -0400  Diab Jerius  <djerius@cpan.org>  (fc1a6fbf1ad8)
+
+	* lib/Hg/Lib/Server.pm:
+	implement client getencoding and runcommand functionality
+
+2013-04-20 22:26 -0400  Diab Jerius  <djerius@cpan.org>  (e7c1ccd64cea)
+
+	* lib/Hg/Lib/Server/Pipe.pm:
+	guard against wrong return context when reading I & L channels
+
+2013-04-20 22:25 -0400  Diab Jerius  <djerius@cpan.org>  (29997f1a6d9e)
+
+	* lib/Hg/Lib/Server/Pipe.pm:
+	add methods to write to server
+
+2013-04-20 22:24 -0400  Diab Jerius  <djerius@cpan.org>  (c3e0c13030c3)
+
+	* lib/Hg/Lib/Server/Pipe.pm:
+	improve default, coercion and type constraint code to match newer
+	Moo & Types
+
+2013-04-20 22:20 -0400  Diab Jerius  <djerius@cpan.org>  (6a3ccefa4b84)
+
+	* t/lib/Server/Base.pm, t/lib/Server/Basic.pm,
+	t/lib/Server/Capability/GetEncoding.pm,
+	t/lib/Server/Capability/RunCommand.pm, t/lib/Server/Commands.pm,
+	t/lib/Server/Full.pm: new file.
+	* t/lib/Server.pm: deleted file.
+	* t/fake-hg, t/lib/BadServer.pm, t/lib/Server.pm,
+	t/lib/Server/Base.pm, t/lib/Server/Basic.pm,
+	t/lib/Server/Capability/GetEncoding.pm,
+	t/lib/Server/Capability/RunCommand.pm, t/lib/Server/Commands.pm,
+	t/lib/Server/Full.pm:
+	reorganize test server code
+
+	* Server -> Server::Base
+	* implement getencoding and runcommand capabilities
+	* properly return result code from runcommand
+	* runcommand delegated to Server::Commands
+	* basic server w/ no commands is now Server::Basic
+	* server w/ commands is Server::Full
+	* fake-hg has new full mode, which starts Server::Full
+
+2013-04-19 12:29 -0400  Diab Jerius  <djerius@cpan.org>  (9addf9b3b0f7)
+
+	* t/lib/Server.pm:
+	perltidy cleanup
+
+2013-04-19 12:26 -0400  Diab Jerius  <djerius@cpan.org>  (36b24e70f10b)
+
+	* t/lib/Server.pm:
+	use simpler builder syntax from latest Moo; use quote_sub where
+	possible
+
+2013-04-19 12:10 -0400  Diab Jerius  <djerius@cpan.org>  (7560d97ae12d)
+
+	* lib/Hg/Lib/Server/Pipe.pm:
+	remove duplicate definition of cmd; fixes RT#84036
+
+2013-04-02 22:23 -0400  Diab Jerius  <djerius@cpan.org>  (d61cb73390f0)
+
+	* t/Server/basic.t: new file.
+	* t/Server.t: deleted file.
+	* t/Server.t, t/Server/basic.t:
+	move test into proper test subdir
+
+2013-04-02 22:22 -0400  Diab Jerius  <djerius@cpan.org>  (b2ee92679445)
+
+	* t/Server.t, t/fake-hg:
+	minor rename of fake-hg hello mode to basic mode
+
+2013-04-02 21:45 -0400  Diab Jerius  <djerius@cpan.org>  (c0b5f8176358)
+
+	* Build.PL: new file.
+	* Makefile.PL, cpanfile: deleted file.
+	* Build.PL, MANIFEST.SKIP, Makefile.PL, cpanfile:
+	switch to Module::Build
+
+2013-02-17 10:29 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (c29325a723be)
+
+	* t/lib/BadServer.pm, t/lib/Server.pm:
+	add some visual formatting
+
+2013-02-17 10:28 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (4b54eda1afa8)
+
+	* t/lib/Server.pm:
+	need Carp to croak
+
+2013-02-16 16:55 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (d24177a83a0b)
+
+	* t/lib/BadServer.pm:
+	more cut-n-paste duplication cleanup
+
+2013-02-16 16:47 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (63327d851a32)
+
+	* t/lib/Server.pm:
+	pretty code
+
+2013-02-16 15:47 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (ba7d355729ae)
+
+	* t/lib/BadServer.pm:
+	only need to load Server once
+
+2013-02-16 15:40 -0500  Diab Jerius  <djerius@cfa.harvard.edu>  (6920dd5feeb8)
+
+	* t/lib/Server.pm:
+	remove premature cruft
+
+2013-02-16 11:13 -0500  djerius  <djerius@cfa.harvard.edu>  (b6e68409257c)
+
+	* t/lib/BadServer.pm, t/lib/Server.pm: new file.
+	* t/BadServer.pm, t/Server.pm: deleted file.
+	* t/BadServer.pm, t/Server.pm, t/fake-hg, t/lib/BadServer.pm,
+	t/lib/Server.pm:
+	properly structure code in test directory
+
+2013-02-09 22:56 -0500  djerius  <djerius@cfa.harvard.edu>  (9efac169acc5)
+
+	* .hgtags:
+	Added tag 0.01_01 for changeset da4abf212af0
+
+2013-02-09 22:56 -0500  djerius  <djerius@cfa.harvard.edu>  (da4abf212af0 [0.01_01])
+
+	* Changes, lib/Hg/Lib.pm:
+	update version and logs for release
+
+2013-02-09 22:53 -0500  djerius  <djerius@cfa.harvard.edu>  (a86beb293bf1)
 
 	* lib/Hg/Lib/Server/Pipe.pm:
 	try to fix hang on windows

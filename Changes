@@ -1,5 +1,20 @@
 Revision history for Hg-Lib
 
+0.01_02 Sat Apr 20 22:49:18 EDT 2013
+
+[BUGS]
+
+* work with latest Moo
+
+[ENHANCEMENTS]
+
+* test server now supports runcommand and getencoding capabilities
+* client can run commands, get encoding
+
+[BUILD]
+* switch to Module::Build
+
+
 0.01_01 Sat Feb  9 21:09:41 EST 2013
 
 [BUILD FIXES]
