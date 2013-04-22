@@ -3,11 +3,9 @@ ChangeLog
 Changes
 lib/Hg/Lib.pm
 lib/Hg/Lib/Server.pm
-lib/Hg/Lib/Server/Pipe.pm
+LICENSE
 MANIFEST			This list of files
 MANIFEST.SKIP
-META.json
-META.yml
 README
 t/common.pm
 t/fake-hg
@@ -21,7 +19,6 @@ t/lib/Server/Full.pm
 t/lib/Server1.pm
 t/Server/basic.t
 t/Server/encoding.t
-t/Server/Pipe.t
-t/Server/Pipe/check_on_child.t
-
-LICENSE
+t/Server/Server.t
+META.yml
+META.json

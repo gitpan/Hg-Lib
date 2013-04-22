@@ -1,5 +1,16 @@
 Revision history for Hg-Lib
 
+0.01_03 Sun Apr 21 23:52:53 EDT 2013
+
+[ENHANCEMENT]
+
+* may specify encoding when creating mercurial server
+
+[BUGS]
+
+* replace home-grown sub-process code with System::Command. Hopefully
+  fixes rt.cpan.org #83239
+
 0.01_02 Sat Apr 20 22:49:18 EDT 2013
 
 [BUGS]

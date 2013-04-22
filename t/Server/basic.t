@@ -10,7 +10,7 @@ use Test::Exception;
 
 use Hg::Lib::Server;
 
-sub new { Hg::Lib::Server->new( hg => fake_hg, @_ ) }
+sub new { Hg::Lib::Server->new( hg => fake_hg, connect => 1, @_ ) }
 
 lives_ok { new( args => [ qw( basic ) ] ) } 'hello, no args';
 

@@ -2,24 +2,31 @@ use strict;
 use warnings;
 package Hg::Lib;
 
+# ABSTRACT: Interface to mercurial's command server
+
 use 5.10.1;
 
-our $VERSION = '0.01_02';
+our $VERSION = '0.01_03';
 
 1;
 
 __END__
 
+=pod
+
 =head1 NAME
 
-Hg::Lib - interface to mercurial's command server
+Hg::Lib - Interface to mercurial's command server
+
+=head1 VERSION
+
+version 0.01_03
 
 =head1 SYNOPSIS
 
   use HG::Lib;
 
   my $server = HG::Lib->new( );
-
 
 =head1 DESCRIPTION
 
@@ -28,14 +35,15 @@ tool. B<Hg::Lib> is an interface to its command server.
 
 B<THIS CODE IS ALPHA QUALITY.> This code is incomplete.  Interfaces may change.
 
-
 =head1 AUTHOR
 
 Diab Jerius E<lt>djerius@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-This code is Copyright 2013 Diab Jerius.  All rights reserved.
+This software is copyright (c) 2013 by Diab Jerius E<lt>djerius@cpan.orgE<gt>.
 
-This program is free software; you can redistribute and/or modify it
-under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

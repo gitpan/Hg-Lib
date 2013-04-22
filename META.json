@@ -1,5 +1,5 @@
 {
-   "abstract" : "interface to mercurial's command server",
+   "abstract" : "Interface to mercurial's command server",
    "author" : [
       "Diab Jerius E<lt>djerius@cpan.orgE<gt>"
    ],
@@ -21,14 +21,12 @@
       },
       "runtime" : {
          "requires" : {
-            "IO::Handle" : "0",
-            "IPC::Open2" : "0",
             "Moo" : "1.001000",
             "MooX::Attributes::Shadow" : "0",
             "MooX::Types::MooseLike" : "0",
-            "POSIX" : "0",
             "Params::Validate" : "0",
             "Scalar::Util" : "0",
+            "System::Command" : "0",
             "Try::Tiny" : "0"
          }
       }
@@ -36,13 +34,10 @@
    "provides" : {
       "Hg::Lib" : {
          "file" : "lib/Hg/Lib.pm",
-         "version" : "0.01_02"
+         "version" : "0.01_03"
       },
       "Hg::Lib::Server" : {
          "file" : "lib/Hg/Lib/Server.pm"
-      },
-      "Hg::Lib::Server::Pipe" : {
-         "file" : "lib/Hg/Lib/Server/Pipe.pm"
       }
    },
    "release_status" : "testing",
@@ -54,7 +49,7 @@
          "url" : "https://bitbucket.org/djerius/hg-lib"
       }
    },
-   "version" : "0.01_02",
+   "version" : "0.01_03",
    "x_test_requires" : {
       "Getopt::Long" : "0",
       "IO::Handle" : "0",

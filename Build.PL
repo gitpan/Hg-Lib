@@ -6,12 +6,10 @@ Module::Build->new(
     license     => 'perl',
 
     requires => {
-        'IO::Handle'               => 0,
-        'IPC::Open2'               => 0,
+        'System::Command'          => 0,
         'Moo'                      => '1.001000',
         'MooX::Attributes::Shadow' => 0,
         'MooX::Types::MooseLike'   => 0,
-        'POSIX'                    => 0,
         'Params::Validate'         => 0,
         'Scalar::Util'             => 0,
         'Try::Tiny'                => 0,

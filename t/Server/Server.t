@@ -8,26 +8,25 @@ use t::common;
 use Test::More;
 use Test::Exception;
 
-use Hg::Lib::Server::Pipe;
+use Hg::Lib::Server;
 
-sub fnew { Hg::Lib::Server::Pipe->new( hg => fake_hg, @_ ) }
+sub fnew { Hg::Lib::Server->new( hg => fake_hg, @_ ) }
 
 lives_ok { fnew( args => [ qw( wait ) ] ) } 'fake, no args';
 
 throws_ok {
 
-    my $pipe = fnew( args => [ qw( fail )  ] );
+    my $server = fnew( args => [ qw( fail )  ] );
 
     # we have to wait a bit to make sure that the process actually
     # dies.
     for ( 0..10 ) {
 	sleep 1;
-	Hg::Lib::Server::Pipe::_check_on_child( $pipe->_pid,
-						status => 'alive' );
+	$server->is_terminated && die( "unexpected exit of child" );
     }
 
 
-}  qr/unexpected exit of child/, 'fake, fail';
+}  qr/unexpected end-of-file/, 'fake, fail';
 
 
 subtest 'badlen' => sub {

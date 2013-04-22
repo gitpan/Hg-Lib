@@ -1,5 +1,8 @@
 NAME
-    Hg::Lib - interface to mercurial's command server
+    Hg::Lib - Interface to mercurial's command server
+
+VERSION
+    version 0.01_03
 
 SYNOPSIS
       use HG::Lib;
@@ -17,8 +20,8 @@ AUTHOR
     Diab Jerius <djerius@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This code is Copyright 2013 Diab Jerius. All rights reserved.
+    This software is copyright (c) 2013 by Diab Jerius <djerius@cpan.org>.
 
-    This program is free software; you can redistribute and/or modify it
-    under the same terms as Perl itself.
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
