@@ -15,7 +15,11 @@ Module::Build->new(
         'Try::Tiny'                => 0,
     },
 
-    test_requires => {
+    (
+        Module::Build->VERSION < 4.004
+        ? 'build_requires'
+        : 'test_requires'
+      ) => {
         'Getopt::Long'    => 0,
         'IO::Handle'      => 0,
         'IO::Pipe'        => 0,
@@ -24,7 +28,7 @@ Module::Build->new(
         'Sub::Quote'      => 0,
         'Test::Exception' => 0,
         'Test::More'      => 0,
-    },
+      },
 
     meta_merge => {
         resources => {

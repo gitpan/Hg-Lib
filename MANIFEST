@@ -3,10 +3,8 @@ ChangeLog
 Changes
 lib/Hg/Lib.pm
 lib/Hg/Lib/Server.pm
-LICENSE
 MANIFEST			This list of files
 MANIFEST.SKIP
-README
 t/common.pm
 t/fake-hg
 t/lib/BadServer.pm
@@ -20,5 +18,7 @@ t/lib/Server1.pm
 t/Server/basic.t
 t/Server/encoding.t
 t/Server/Server.t
+README
+LICENSE
 META.yml
 META.json

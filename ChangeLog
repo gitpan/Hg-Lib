@@ -1,4 +1,75 @@
-2013-04-20 22:47 -0400  Diab Jerius  <djerius@cpan.org>  (bd93019e9860 [tip])
+2013-04-22 22:00 -0400  Diab Jerius  <djerius@cpan.org>  (5f1dc97fdecc [tip])
+
+	* lib/Hg/Lib/Server.pm:
+	older Perl's need FileHandle loaded to get methods on FileHandle
+	objects
+
+2013-04-22 21:57 -0400  Diab Jerius  <djerius@cpan.org>  (3192756e5473)
+
+	* Build.PL:
+	older Module::Build versions don't do test_requires
+
+2013-04-22 00:14 -0400  Diab Jerius  <djerius@cpan.org>  (fa7806cea67a)
+
+	* lib/Hg/Lib/Client.pm: new file.
+	* lib/Hg/Lib/Client.pm:
+	initial (non working) client code
+
+2013-04-22 00:12 -0400  Diab Jerius  <djerius@cpan.org>  (9365532c231a)
+
+	* .hgtags:
+	Added tag 0.01_03 for changeset 62698dae82ec
+
+2013-04-22 00:12 -0400  Diab Jerius  <djerius@cpan.org>  (62698dae82ec [0.01_03])
+
+	* .hgignore: new file.
+	* .hgignore:
+	ignore more things
+
+2013-04-22 00:08 -0400  Diab Jerius  <djerius@cpan.org>  (21c3cd7817a9)
+
+	* Build.PL, Changes, lib/Hg/Lib.pm, lib/Hg/Lib/Server.pm:
+	update logs and version for release
+
+2013-04-21 23:51 -0400  Diab Jerius  <djerius@cpan.org>  (d2494451da19)
+
+	* t/Server/Server.t: new file.
+	* lib/Hg/Lib/Server/Pipe.pm, t/Server/Pipe.t: deleted file.
+	* lib/Hg/Lib/Server.pm, lib/Hg/Lib/Server/Pipe.pm, t/Server/Pipe.t,
+	t/Server/Server.t, t/Server/basic.t:
+	with switch to System::Command, need for Pipe object fades. fold
+	into Server
+
+	- Server constructor:
+	   -  encoding option specifies encoding
+	   - connect option (default false) indicates if to immediately
+	connect, or to lazy load
+	- update tests
+
+2013-04-21 18:48 -0400  Diab Jerius  <djerius@cpan.org>  (ff867e853a85)
+
+	* t/Server/Pipe/check_on_child.t: deleted file.
+	* Build.PL, lib/Hg/Lib/Server/Pipe.pm, t/Server/Pipe/check_on_child.t:
+	replace home-grown pipe connection code with System::Command (yeah!)
+
+	add environment attribute (env)
+
+2013-04-20 22:56 -0400  Diab Jerius  <djerius@cpan.org>  (025e5051e70c)
+
+	* .hgtags:
+	Added tag 0.01_02 for changeset 271e069c0212
+
+2013-04-20 22:56 -0400  Diab Jerius  <djerius@cpan.org>  (271e069c0212 [0.01_02])
+
+	* Changes, lib/Hg/Lib.pm:
+	update logs and version for release
+
+2013-04-20 22:52 -0400  Diab Jerius  <djerius@cpan.org>  (8b1daa8b20ae)
+
+	* Build.PL:
+	update dependencies
+
+2013-04-20 22:47 -0400  Diab Jerius  <djerius@cpan.org>  (bd93019e9860)
 
 	* lib/Hg/Lib/Server.pm, lib/Hg/Lib/Server/Pipe.pm:
 	perltidy

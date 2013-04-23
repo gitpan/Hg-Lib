@@ -7,6 +7,9 @@ use Carp;
 use System::Command;
 use Params::Validate ':all';
 
+# for perl 5.10.1
+use FileHandle;
+
 use Moo;
 use MooX::Types::MooseLike::Base qw[ :all ];
 

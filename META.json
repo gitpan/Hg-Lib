@@ -14,6 +14,18 @@
    },
    "name" : "Hg-Lib",
    "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Getopt::Long" : "0",
+            "IO::Handle" : "0",
+            "IO::Pipe" : "0",
+            "Moo::Role" : "0",
+            "Probe::Perl" : "0",
+            "Sub::Quote" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0"
+         }
+      },
       "configure" : {
          "requires" : {
             "Module::Build" : "0.40"
@@ -34,7 +46,7 @@
    "provides" : {
       "Hg::Lib" : {
          "file" : "lib/Hg/Lib.pm",
-         "version" : "0.01_03"
+         "version" : "0.01_04"
       },
       "Hg::Lib::Server" : {
          "file" : "lib/Hg/Lib/Server.pm"
@@ -49,15 +61,5 @@
          "url" : "https://bitbucket.org/djerius/hg-lib"
       }
    },
-   "version" : "0.01_03",
-   "x_test_requires" : {
-      "Getopt::Long" : "0",
-      "IO::Handle" : "0",
-      "IO::Pipe" : "0",
-      "Moo::Role" : "0",
-      "Probe::Perl" : "0",
-      "Sub::Quote" : "0",
-      "Test::Exception" : "0",
-      "Test::More" : "0"
-   }
+   "version" : "0.01_04"
 }

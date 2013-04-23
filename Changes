@@ -1,5 +1,12 @@
 Revision history for Hg-Lib
 
+0.01_04 Mon Apr 22 22:06:17 EDT 2013
+
+[BUGS]
+
+* older Perls create FileHandle objects w/ loading
+  FileHandle. explicitly load it
+
 0.01_03 Sun Apr 21 23:52:53 EDT 2013
 
 [ENHANCEMENT]
