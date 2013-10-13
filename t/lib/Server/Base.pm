@@ -66,6 +66,12 @@ sub read_chunk {
     return $self->read( $len, @_ );
 }
 
+sub write {
+
+    my $self = shift;
+    return  defined $self->output->syswrite( @_ );
+}
+
 sub write_chunk {
 
     my $self = shift;

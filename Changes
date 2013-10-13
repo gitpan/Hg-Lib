@@ -1,49 +1,63 @@
 Revision history for Hg-Lib
 
+ [ ENHANCEMENTS ]
+
+  * all of the foundation support is complete; just need to add sugar
+    routines for more hg commands
+
+  * add some documentation
+
+  * now actually communicates with and tests against a real hg command server
+
+  * better handling of unexpected server termination
+
+
 0.01_04 Mon Apr 22 22:06:17 EDT 2013
 
-[BUGS]
+  [BUGS]
 
-* older Perls create FileHandle objects w/ loading
-  FileHandle. explicitly load it
+  * older Perls create FileHandle objects w/ loading
+    FileHandle. explicitly load it
 
 0.01_03 Sun Apr 21 23:52:53 EDT 2013
 
-[ENHANCEMENT]
+  [ENHANCEMENT]
 
-* may specify encoding when creating mercurial server
+  * may specify encoding when creating mercurial server
 
 [BUGS]
 
-* replace home-grown sub-process code with System::Command. Hopefully
-  fixes rt.cpan.org #83239
+  * replace home-grown sub-process code with System::Command. Hopefully
+    fixes rt.cpan.org #83239
 
 0.01_02 Sat Apr 20 22:49:18 EDT 2013
 
-[BUGS]
+  [BUGS]
 
-* work with latest Moo
+  * work with latest Moo
 
-[ENHANCEMENTS]
+  [ENHANCEMENTS]
 
-* test server now supports runcommand and getencoding capabilities
-* client can run commands, get encoding
+  * test server now supports runcommand and getencoding capabilities
+  * client can run commands, get encoding
 
-[BUILD]
-* switch to Module::Build
+  [BUILD]
+
+  * switch to Module::Build
 
 
 0.01_01 Sat Feb  9 21:09:41 EST 2013
 
-[BUILD FIXES]
+  [BUILD FIXES]
 
-* record missing test dependency on Probe::Perl
+  * record missing test dependency on Probe::Perl
 
-* make work on 5.10.1
+  * make work on 5.10.1
 
-* attempt to get Windows to work
+  * attempt to get Windows to work
+
 
 0.01 Mon Feb  4 22:47:24 EST 2013
 
-* initial release
+  * initial release
 

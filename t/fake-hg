@@ -3,8 +3,11 @@
 use IO::Handle;
 use Getopt::Long;
 
-use lib 't';
-use lib 't/lib';
+use FindBin;
+use lib "$FindBin::Bin/lib";
+
+autoflush STDOUT 1;
+
 
 my %opt = ( exitval => 0 );
 
@@ -66,8 +69,30 @@ sub bad_hello_no_encoding {
 
 }
 
+sub bad_bad_encoding {
 
-sub badlen { print pack( 'A[1] l> A[2]', 'o', 3, 'aa' ); exit; }
+    require BadServer;
+    BadServer::BadEncoding->new->serve;
+
+}
+
+sub fail_with_stderr {
+
+    require BadServer;
+    BadServer::FailWithStderr->new->serve;
+
+}
+sub exit_with_stderr {
+
+    require BadServer;
+    BadServer::ExitWithStderr->new->serve;
+
+}
+
+sub badlen {
+    print pack( 'A[1] l> A[2]', 'o', 3, 'aa' );
+    <STDIN>;
+ }
 
 
 sub wait {

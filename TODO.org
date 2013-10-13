@@ -1,0 +1,5 @@
+* more properly handle unexpected termination of server
+
+  The server process is checked for termination and unsuccessful exit
+  only when the Pipe object is demolished.  The die() in Pipe::DEMOLISH
+  

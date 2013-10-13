@@ -1,20 +1,218 @@
 NAME
-    Hg::Lib - Interface to mercurial's command server
-
-VERSION
-    version 0.01_03
+    Hg::Lib - interface to mercurial's command server
 
 SYNOPSIS
-      use HG::Lib;
+      use Hg::Lib;
 
-      my $server = HG::Lib->new( );
+      # existing repository; start mercurial server
+
+      $client = Hg::Lib::open( path => $dir, %options );
+
+      # initialize a new repository, start mercurial server
+
+      $client = Hg::Lib::init( dest => $dir, %options );
+
+      # clone a repository, start mercurial server in clone
+
+      $client = Hg::Lib::clone( source => $src, dest => $dest, %options );
 
 DESCRIPTION
-    mercurial is a distributed source control management tool. Hg::Lib is an
-    interface to its command server.
-
     THIS CODE IS ALPHA QUALITY. This code is incomplete. Interfaces may
     change.
+
+    Hg::Lib is an interface to mercurial's command server. (mercurial is a
+    distributed version control system (DVCS) tool. See "REFERENCES" for
+    links to detailed discussions of both mercurial and its the command
+    server.)
+
+    mercurial officially supports two interfaces for interacting with it:
+    the command line, and its built-in command server. The command server
+    runs alongside the controlling program; communications between the two
+    is via the server's standard input and output streams. Multiple
+    sequential commands may be issued to the server, reducing the overhead
+    of starting up mercurial for each command. The syntax for using the
+    command server is very similar to issuing commands to the hg program on
+    the command line.
+
+    Hg::Lib manages the start and stop of the server, and marshals
+    communications between it and user code. It encapsulates the interaction
+    with the server in an Hg::Lib::CLient object, whose methods mirror hg's
+    commands.
+
+FUNCTIONS
+    There are three functions in Hg::Lib:
+
+    *   open operates on an existing repository.
+
+    *   init creates a new, empty repository and operates on that
+
+    *   clone clones an existing repository and operates on the clone
+
+    mercurial's command server only works with an existing repository. The
+    init and clone functions first create the new repository using hg, and
+    then start the command server.
+
+    Each function returns an Hg::Lib::Client object which is used to control
+    the server. By default the server is not actually started until the
+    client sends it a request. The "connect" attribute may be used to change
+    this behavior.
+
+    open
+          $client = Hg::Lib::open( %args );
+
+        Create a client associated with an existing repository. Throws an
+        Hg::Lib::Exception object open error.
+
+        The following named arguments are available:
+
+        "path" *directory name*
+            The path to the directory containing the repository. If not
+            specified, the current directory is used. *(Optional)*.
+
+        "configs" *scalar* | *arrayref*
+            one or more configuration options to be passed to hg via its
+            "--config" option. See hg's documentation for more information.
+            *(Optional)*.
+
+        "connect" *boolean*
+            If false (the default), the command server will be started when
+            the first command is sent to it. If true, the command server
+            will be started immediately. *(Optional)*.
+
+        "encoding" *string*
+            The character set encoding to use. *(Optional)*.
+
+        "env" *HashRef*
+            A hash containing extra environment variables for the command
+            server's environment. *(Optional)*.
+
+        "hg" *scalar* | *arrayref*
+            The command used to invoke the hg executable. If not specified,
+            the user's path is searched for the "hg" command. *(Optional)*.
+
+        "timeout" *Num*
+            The time (in seconds) to wait before recieving a response from
+            the command server. It defaults to 5 seconds. *(Optional)*.
+
+    init
+          $client = Hg::Lib::init( %args );
+
+        Initialize a fresh repository and return a client associated with
+        it. Throws an Hg::Lib::Exception object open error.
+
+        The following named arguments are available:
+
+        "dest" *directory name*
+            The name of the directory which will contain the new repository.
+            If not specified, the repository is created in the current
+            directory. *(Optional)*.
+
+        "ssh" *string*
+            The ssh command to use if connecting to a remote host.
+            *(Optional)*.
+
+        "remotecmd" *string*
+            The hg command to run on the remote host. *(Optional)*.
+
+        "insecure" *boolean*
+            If true, do not verify server certificate. *(Optional)*.
+
+        "configs" *scalar* | *arrayref*
+            one or more configuration options to be passed to hg via its
+            "--config" option. *(Optional)*.
+
+        "connect" *boolean*
+            If false (the default), the command server will be started when
+            the first command is sent to it. If true, the command server
+            will be started immediately. *(Optional)*.
+
+        "encoding" *string*
+            The locale to use. *(Optional)*.
+
+        "env" *HashRef*
+            A hash containing extra environment variables for the command
+            server's environment. *(Optional)*.
+
+        "hg" *scalar* | *arrayref*
+            The command used to invoke the hg executable. If not specified,
+            the user's path is searched for the "hg" command. *(Optional)*.
+
+        "timeout" *Num*
+            The time (in seconds) to wait before recieving a response from
+            the command server. It defaults to 5 seconds. *(Optional)*.
+
+    clone
+          $client = Hg::Lib::clone( source => $source, %args );
+
+        Clone an existing repository and create a client associated with the
+        clone. Throws an Hg::Lib::Exception object open error.
+
+        The following named arguments are available:
+
+        "source" *directory name*
+            The name of the directory which will contain the source
+            repository. *(Required)*.
+
+        "dest" *directory name*
+            The name of the directory which will contain the new repository.
+            If not specified, a new directory (named after the basename of
+            the source) containing the clone is created in the current
+            directory. *(Optional)*.
+
+        "noupdate" *boolean*
+            If true, the clone will have an empty working copy. It defaults
+            to false. *(Optional)*.
+
+        "updaterev" *string*
+            The revision, tag, or branch to check out. *(Optional)*.
+
+        "ssh" *string*
+            The ssh command to use if connecting to a remote host.
+            *(Optional)*.
+
+        "remotecmd" *string*
+            The hg command to run on the remote host. *(Optional)*.
+
+        "insecure" *boolean*
+            If true, do not verify server certificate. *(Optional)*.
+
+        "configs" *scalar* | *arrayref*
+            one or more configuration options to be passed to hg via its
+            "--config" option. *(Optional)*.
+
+        "connect" *boolean*
+            If false (the default), the command server will be started when
+            the first command is sent to it. If true, the command server
+            will be started immediately. *(Optional)*.
+
+        "encoding" *string*
+            The locale to use. *(Optional)*.
+
+        "env" *HashRef*
+            A hash containing extra environment variables for the command
+            server's environment. *(Optional)*.
+
+        "hg" *scalar* | *arrayref*
+            The command used to invoke the hg executable. If not specified,
+            the user's path is searched for the "hg" command. *(Optional)*.
+
+        "timeout" *Num*
+            The time (in seconds) to wait before recieving a response from
+            the command server. It defaults to 5 seconds. *(Optional)*.
+
+ERRORS
+    If an error occurs, an exception in the Hg::Lib::Exception hierarchy is
+    thrown; see Hg::Lib::Exception for more details.
+
+REFERENCES
+    mercurial
+        <http://mercurial.selenic.com/>
+
+    command server
+        <http://mercurial.selenic.com/wiki/CommandServer>
+
+    Python hglib
+        <http://mercurial.selenic.com/wiki/PythonHglib>
 
 AUTHOR
     Diab Jerius <djerius@cpan.org>
